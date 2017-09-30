@@ -15,7 +15,7 @@ $(function() {
             username: username,
             password: password
         };
-        var hostUrl= 'http://localhost:9000/research/authentication';
+        var hostUrl= $("#requestUrl").val();
         console.log("request begins.. data is "+ JSON.stringify(data) + " URL is " + hostUrl);
         $.ajax({
             url: hostUrl,
