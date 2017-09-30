@@ -18,6 +18,7 @@ import java.io.PrintWriter;
 
 @Component
 public class NonRedirectHandler extends SavedRequestAwareAuthenticationSuccessHandler {
+//public class NonRedirectHandler extends SimpleUrlAuthenticationSuccessHandler {
 
     private RequestCache requestCache = new HttpSessionRequestCache();
 
@@ -37,6 +38,7 @@ public class NonRedirectHandler extends SavedRequestAwareAuthenticationSuccessHa
         SavedRequest savedRequest
                 = requestCache.getRequest(request, response);
 
+        writeResult(response, authentication);
         response.setStatus(HttpServletResponse.SC_OK);
 
         if (savedRequest == null) {
@@ -52,7 +54,6 @@ public class NonRedirectHandler extends SavedRequestAwareAuthenticationSuccessHa
             return;
         }
 
-        writeResult(response, authentication);
         clearAuthenticationAttributes(request);
     }
 

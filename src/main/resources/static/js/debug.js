@@ -20,9 +20,8 @@ $(function() {
         $.ajax({
             url: hostUrl,
             type:'post',
-            dataType: 'JSON',
-            scriptCharset: 'utf-8',
-            contentType: 'application/json',
+            dataType: 'JSON', // AuthenticationSuccessHandler にて JSON を戻します。
+//            scriptCharset: 'utf-8',
 //            data : JSON.stringify(data),
             //data : JSON.stringify({username: username, password: password}),
             data : data,
@@ -33,7 +32,7 @@ $(function() {
                  console.log(JSON.stringify(data));
                  outputCookie();
         }).fail(function(XMLHttpRequest, textStatus, errorThrown) {
-                 console.log("NG");
+                 console.log("NG... cause is " + textStatus + " errorThrown" + errorThrown);
         })
     });
 });
