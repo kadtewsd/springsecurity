@@ -5,13 +5,17 @@
     <title>検証</title>
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.2.1/jquery.min.js"
                 th:src="@{/webjars/jquery/2.2.1/jquery.min.js}"></script>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+          th:href="@{/webjars/bootstrap/3.3.7/css/bootstrap.min.css}" rel="stylesheet" />
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+            th:src="@{/webjars/bootstrap/3.3.7/js/bootstrap.min.js}"></script>
     <script type="text/javascript" src="../static/js/debug.js" th:src="@{/js/debug.js}"></script>
 </head>
 <body>
 <form>
     <input type="hidden" id="username" name="username" value="kasakaid" />
     <input type="hidden" id="password" name="password" value="password!!!" />
-    <input type="button" id="ajax-button" value="hoge" />
+    <button id="ajax-button" class="btn btn-lg btn-primary btn-block">Authentication</button>
 </form>
 </body>
 </html>

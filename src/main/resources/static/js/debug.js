@@ -1,6 +1,7 @@
 function outputCookie() {
    var theCookies = document.cookie.split(';');
    var aString = '';
+   console.log("cookies are ... ")
    for (var i = 1 ; i <= theCookies.length; i++) {
        console.log(theCookies[i-1]);
    }
@@ -14,9 +15,8 @@ $(function() {
             username: username,
             password: password
         };
-        console.log(data);
         var hostUrl= 'http://localhost:9000/research/authentication';
-        console.log(username + password);
+        console.log("request begins.. data is "+ JSON.stringify(data) + " URL is " + hostUrl);
         $.ajax({
             url: hostUrl,
             type:'post',
@@ -29,8 +29,8 @@ $(function() {
             timeout:10000,
 //           jsonp: 'callback',
         }).done(function(data) {
-                 console.log("ok");
-                 console.log(data);
+                 console.log("response status is ok... response data is below");
+                 console.log(JSON.stringify(data));
                  outputCookie();
         }).fail(function(XMLHttpRequest, textStatus, errorThrown) {
                  console.log("NG");
