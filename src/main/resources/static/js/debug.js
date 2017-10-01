@@ -7,6 +7,11 @@ function outputCookie() {
    }
    $("#cookie").val(theCookies);
 }
+
+function outputHeaders(xhr) {
+    $("#header").val(xhr.getAllResponseHeaders());
+}
+
 $(function() {
     $( '#ajax-button' ) .click(
     function() {
@@ -28,11 +33,16 @@ $(function() {
             data : data,
             timeout:10000,
 //           jsonp: 'callback',
+        }).then(function(data, status, xhr) {
+            var d = new $.Deferred();
+            outputHeaders(xhr);
+            var json = JSON.stringify(data);
+            $("#json").val(json);
+            outputCookie();
+            d.resolve();
+            return d.promise();
         }).done(function(data) {
-                 console.log("response status is ok... response data is below");
-                 var json = JSON.stringify(data);
-                 $("#json").val(json);
-                 outputCookie();
+            console.log("response status is ok... response data is rendered");
         }).fail(function(XMLHttpRequest, textStatus, errorThrown) {
                  console.log("NG... cause is " + textStatus + " errorThrown" + errorThrown);
         })

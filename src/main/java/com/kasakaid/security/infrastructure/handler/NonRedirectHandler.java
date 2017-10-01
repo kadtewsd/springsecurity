@@ -38,9 +38,14 @@ public class NonRedirectHandler extends SavedRequestAwareAuthenticationSuccessHa
         SavedRequest savedRequest
                 = requestCache.getRequest(request, response);
 
-        writeResult(response, authentication);
-        response.setStatus(HttpServletResponse.SC_OK);
-
+        HttpServletResponse res = (HttpServletResponse) response;
+        // これらは write 前に書かないといけない
+        res.setStatus(HttpServletResponse.SC_OK);
+        res.setHeader("Access-Control-Allow-Origin", "*");
+        res.setHeader("Access-Control-Allow-Methods", "POST, GET, OPTIONS, DELETE");
+        res.setHeader("Access-Control-Max-Age", "3600");
+        res.setHeader("Access-Control-Allow-Headers", "x-requested-with");
+        writeResult(res, authentication);
         if (savedRequest == null) {
             clearAuthenticationAttributes(request);
             return;

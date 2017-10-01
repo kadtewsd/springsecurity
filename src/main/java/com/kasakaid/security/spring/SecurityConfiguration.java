@@ -1,6 +1,7 @@
 package com.kasakaid.security.spring;
 
 import com.kasakaid.security.infrastructure.filter.AuthenticationFilter;
+import com.kasakaid.security.infrastructure.filter.CustomCorsFilter;
 import com.kasakaid.security.infrastructure.filter.LoggingFilter;
 import com.kasakaid.security.infrastructure.handler.NonRedirectHandler;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,7 +24,14 @@ import static com.kasakaid.security.spring.SecurityConfig.LOGIN_PROCESS_URL;
 @Configuration
 public class SecurityConfiguration {
     @Bean
-    FilterRegistrationBean registration(LoggingFilter filter) {
+    FilterRegistrationBean loggingRegistration(LoggingFilter filter) {
+        FilterRegistrationBean registration = new FilterRegistrationBean(filter);
+        registration.setDispatcherTypes(EnumSet.allOf(DispatcherType.class));
+        registration.addUrlPatterns("/*");
+        return registration;
+    }
+    @Bean
+    FilterRegistrationBean corsRegistration(CustomCorsFilter filter) {
         FilterRegistrationBean registration = new FilterRegistrationBean(filter);
         registration.setDispatcherTypes(EnumSet.allOf(DispatcherType.class));
         registration.addUrlPatterns("/*");
