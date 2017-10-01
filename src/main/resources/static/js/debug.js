@@ -3,8 +3,9 @@ function outputCookie() {
    var aString = '';
    console.log("cookies are ... ")
    for (var i = 1 ; i <= theCookies.length; i++) {
-       console.log(theCookies[i-1]);
+       aString +=theCookies[i-1] + "¥n";
    }
+   $("#cookie").val(theCookies);
 }
 $(function() {
     $( '#ajax-button' ) .click(
@@ -29,7 +30,8 @@ $(function() {
 //           jsonp: 'callback',
         }).done(function(data) {
                  console.log("response status is ok... response data is below");
-                 console.log(JSON.stringify(data));
+                 var json = JSON.stringify(data);
+                 $("#json").val(json);
                  outputCookie();
         }).fail(function(XMLHttpRequest, textStatus, errorThrown) {
                  console.log("NG... cause is " + textStatus + " errorThrown" + errorThrown);

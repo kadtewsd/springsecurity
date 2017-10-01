@@ -16,7 +16,12 @@
     <input type="hidden" id="username" name="username" value="kasakaid" />
     <input type="hidden" id="password" name="password" value="password!!!" />
     <input id="requestUrl" class="form-control" placeholder="Request URL" value="http://localhost:9000/research/authentication" name="requestUrl" autofocustrue="true" required="true"/>
-    <button id="ajax-button" class="btn btn-lg btn-primary btn-block">Authentication</button>
+    <!-- button だと画面がリロードする <button id="ajax-button" class="btn btn-lg btn-primary btn-block">Authentication</button> -->
+    <input type="button" id="ajax-button" class="btn btn-lg btn-primary btn-block" value="Authentication" />
+    <p>JSON</p>
+    <textarea id="json" cols="200px" />
+    <p>Cookie</p>
+    <textarea id="cookie" cols="200px" />
 </form>
 </body>
 </html>
