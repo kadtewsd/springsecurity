@@ -41,7 +41,8 @@ public class NonRedirectHandler extends SavedRequestAwareAuthenticationSuccessHa
         HttpServletResponse res = (HttpServletResponse) response;
         // これらは write 前に書かないといけない
         res.setStatus(HttpServletResponse.SC_OK);
-        res.setHeader("Access-Control-Allow-Origin", "*");
+        String allowedOrigins = "http://wfe.kasakaid.com";
+        res.setHeader("Access-Control-Allow-Origin", allowedOrigins);
         res.setHeader("Access-Control-Allow-Methods", "POST, GET, OPTIONS, DELETE");
         res.setHeader("Access-Control-Max-Age", "3600");
         res.setHeader("Access-Control-Allow-Headers", "x-requested-with");
